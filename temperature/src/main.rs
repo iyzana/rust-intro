@@ -13,10 +13,8 @@ fn main() {
         println!("");
 
         match conversion.trim().parse() {
-            Ok(1) => break 1,
-            Ok(2) => break 2,
-            Ok(_) => continue,
-            Err(_) => continue,
+            Ok(n) if n > 0 && n < 3 => break n,
+            _ => continue,
         }
     };
 
