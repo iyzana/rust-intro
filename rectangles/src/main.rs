@@ -23,9 +23,10 @@ fn main() {
     let rect1 = Rectangle { width: 30, height: 50, };
     let rect2 = Rectangle { width: 10, height: 40, };
     let rect3 = Rectangle { width: 60, height: 45, };
-    let _square = Rectangle::square(15);
+    let square = Rectangle::square(15);
 
     println!("rect is {:?}", rect1);
+    println!("square is {:?}", square);
     println!(
         "The area of the rectangle is {} square pixels.",
         rect1.area()
