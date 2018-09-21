@@ -20,4 +20,26 @@ fn main() {
 
     let result = largest(&char_list);
     println!("The largest char is {}", result);
+
+    let a = A { _a: 1 };
+    let _b = A { _a: "hi" };
+
+    a.c();
+    // b.c(); does not work
+}
+
+struct A<T> {
+    _a: T,
+}
+
+trait B {}
+
+trait C {
+    fn c(&self);
+}
+
+impl B for i32{}
+
+impl<T: B> C for A<T> {
+    fn c(&self) {}
 }
