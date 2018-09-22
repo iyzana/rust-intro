@@ -9,8 +9,7 @@ fn main() {
     println!("median: {}", list::median(&data));
     println!("mode: {:?}", list::mode(&data));
 
-    let a: String = string::pig_latin("Hi i am your trusted rust program");
-    println!("{}", a.as_str());
+    println!("{}", string::pig_latin("Hi i am your trusted rust program"));
 
     map::departments();
 }
