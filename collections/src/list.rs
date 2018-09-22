@@ -1,17 +1,17 @@
 use std::collections::HashMap;
 
-fn mean(list: &Vec<i32>) -> f64 {
+pub fn mean(list: &Vec<i32>) -> f64 {
     let sum: i32 = list.iter().sum();
     sum as f64 / list.len() as f64
 }
 
-fn median(list: &Vec<i32>) -> i32 {
+pub fn median(list: &Vec<i32>) -> i32 {
     let mut copy = list.clone();
     copy.sort();
     copy[copy.len() / 2]
 }
 
-fn mode(list: &Vec<i32>) -> Option<i32> {
+pub fn mode(list: &Vec<i32>) -> Option<i32> {
     let mut counts = HashMap::new();
 
     for i in list.iter() {
