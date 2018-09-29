@@ -19,7 +19,5 @@ pub fn mode(list: &Vec<i32>) -> Option<i32> {
         *count += 1;
     }
 
-    counts.iter()
-        .map(|(_, v)| *v)
-        .max()
+    counts.iter().map(|(_, v)| *v).max()
 }

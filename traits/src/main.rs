@@ -38,7 +38,7 @@ trait C {
     fn c(&self);
 }
 
-impl B for i32{}
+impl B for i32 {}
 
 impl<T: B> C for A<T> {
     fn c(&self) {}
