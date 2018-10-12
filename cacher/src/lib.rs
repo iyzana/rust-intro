@@ -31,7 +31,7 @@ where
     fn get(&mut self, arg: I) -> O {
         if let Some(v) = self.values.get(&arg) {
             return v.clone();
-        };
+        }
 
         let v = (self.compute)(arg.clone());
         self.values.insert(arg, v.clone());
@@ -42,15 +42,16 @@ where
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::time::SystemTime;
     use std::thread;
+    use std::time::Duration;
+    use std::time::SystemTime;
 
     #[test]
     fn it_works() {
         let mut cacher = Cacher::new(|_i| SystemTime::now());
 
         let time1 = cacher.get(1);
-        thread::sleep_ms(2);
+        thread::sleep(Duration::from_millis(2));
         let time2 = cacher.get(1);
         assert_eq!(time1, time2);
     }
