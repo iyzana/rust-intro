@@ -40,14 +40,27 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn new(args: &[String]) -> Result<Config, &'static str> {
-        if args.len() < 3 {
-            return Err("not enough arguments");
-        }
-        let query = args[1].clone();
-        let filename = args[2].clone();
-        let case_sensitive =
-            !(env::var("CASE_INSENSITIVE").is_ok() || args.len() > 3 && args[3] == "-i");
+    pub fn new(mut args: std::env::Args) -> Result<Config, String> {
+        // ignore executable name
+        args.next();
+
+        let query = match args.next() {
+            Some(arg) => arg,
+            None => return Err(String::from("no query specified")),
+        };
+
+        let filename = match args.next() {
+            Some(arg) => arg,
+            None => return Err(String::from("no file specified")),
+        };
+
+        let case_sensitive = env::var("CASE_INSENSITIVE")
+            .map(|_v| Ok(false))
+            .unwrap_or_else(|_v| match args.next().as_ref().map(|s| s.as_ref()) {
+                Some("-i") => Ok(false),
+                Some(p) => Err(format!("unknown parameter {}", p)),
+                _ => Ok(true),
+            })?;
 
         Ok(Config {
             query,
