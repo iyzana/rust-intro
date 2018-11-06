@@ -50,7 +50,7 @@ impl Worker {
         let thread = thread::spawn(move || loop {
             let job = match rx.lock().unwrap().recv().unwrap() {
                 Message::NewJob(job) => job,
-                Message::Terminate =>{
+                Message::Terminate => {
                     println!("#{}: shutting down", id);
                     break;
                 }
